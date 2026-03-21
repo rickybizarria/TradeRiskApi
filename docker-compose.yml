@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # Trade Risk API
+  # ===========================================================================
+  traderisk-api:
+    image: traderisk-api:latest
+    container_name: traderisk-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+      - "8443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourSecurePassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ./https:/https:ro
+    networks:
+      - traderisk-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+networks:
+  traderisk-network:
+    driver: bridge

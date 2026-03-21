@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TradeRiskApi.Application/TradeRiskApi.Application.csproj" />
+    <Project Path="src/TradeRiskApi.Domain/TradeRiskApi.Domain.csproj" />
+    <Project Path="src/TradeRiskApi.Web/TradeRiskApi.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TradeRiskApi.IntegrationTests/TradeRiskApi.IntegrationTests.csproj" />
+    <Project Path="tests/TradeRiskApi.UnitTests/TradeRiskApi.UnitTests.csproj" />
+  </Folder>
+</Solution>
